@@ -78,8 +78,14 @@ def main():
     data_args: DataTrainingArguments
     training_args: TrainingArguments
     
-    data_args.train_path = data_args.train_path.split(',')
-    
+    data_args.train_path = [
+    '/content/shard_1.json',
+    '/content/shard_2.json',
+    '/content/shard_3.json',
+    '/content/shard_4.json',
+    '/content/shard_5.json'
+    ]
+  
 
     # Setup logging
     logging.basicConfig(
