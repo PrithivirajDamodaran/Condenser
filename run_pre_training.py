@@ -33,7 +33,6 @@ from transformers import (
     HfArgumentParser,
     set_seed, )
 from transformers.trainer_utils import is_main_process
-import ast
 
 logger = logging.getLogger(__name__)
 
@@ -80,15 +79,6 @@ def main():
     training_args: TrainingArguments
 
     
-
-    # Somewhere in your script where you parse the command line arguments:
-    if isinstance(data_args.train_path, str):
-        try:
-            # Attempt to parse the string as a list
-            data_args.train_path = ast.literal_eval(data_args.train_path)
-        except ValueError:
-            # If it's not a list string, split by comma
-            data_args.train_path = data_args.train_path.split(',')
 
     # Setup logging
     logging.basicConfig(
