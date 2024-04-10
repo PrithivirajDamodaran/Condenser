@@ -77,7 +77,8 @@ def main():
     model_args: ModelArguments
     data_args: DataTrainingArguments
     training_args: TrainingArguments
-
+    
+    data_args.train_path = data_args.train_path.split(',')
     
 
     # Setup logging
