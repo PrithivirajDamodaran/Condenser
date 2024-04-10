@@ -124,8 +124,11 @@ class CondenserCollator(DataCollatorForWholeWordMask):
         encoded_examples = []
         masks = []
         mlm_masks = []
+        
+        # Check and skip any examples that are None or incomplete
+        valid_examples = [e for e in examples if e is not None and 'text' in e and e['text'] is not None]
 
-        for e in examples:
+        for e in valid_examples:
             e_trunc = self._truncate(e['text'])
             tokens = [self.tokenizer._convert_id_to_token(tid) for tid in e_trunc]
             mlm_mask = self._whole_word_mask(tokens)
