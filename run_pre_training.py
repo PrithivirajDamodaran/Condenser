@@ -53,6 +53,14 @@ def main():
         # let's parse it to get our arguments.
         model_args, data_args, training_args = parser.parse_json_file(json_file=os.path.abspath(sys.argv[1]))
     else:
+        
+        # Remove the automatically added --local-rank argument
+        sys.argv = [arg for arg in sys.argv if not arg.startswith('--local-rank')]
+        
+        # Append the --local_rank 0 argument, which is compatible with HfArgumentParser
+        sys.argv.append('--local_rank')
+        sys.argv.append('0')
+        
         model_args, data_args, training_args = parser.parse_args_into_dataclasses()
 
     if (
