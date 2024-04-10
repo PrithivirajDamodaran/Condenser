@@ -103,12 +103,12 @@ def main():
     train_set = load_dataset(
         'json',
         data_files=data_args.train_path,
-        block_size=2**25,
+        chunksize=2**25,
     )['train']
     dev_set = load_dataset(
         'json',
         data_files=data_args.validation_file,
-        block_size=2**25
+        chunksize=2**25
     )['train'] \
         if data_args.validation_file is not None else None
 
