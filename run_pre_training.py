@@ -114,6 +114,8 @@ def main():
         data_files=data_args.train_path,
         chunksize=2**25,
     )['train']
+    logger.warning(train_set)
+    
     dev_set = load_dataset(
         'json',
         data_files=data_args.validation_file,
